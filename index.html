@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رمز الجود والكرم</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fbf5e8;font-family:Tahoma,Arial,sans-serif;color:#174f2a}
+main{max-width:760px;margin:auto;padding:18px;text-align:center}
+h1{font-size:clamp(30px,7vw,50px);margin:10px 0 4px}
+.intro{font-size:18px;font-weight:bold;margin:0 0 16px}
+.game{position:relative;min-height:560px;background:#fffaf0;border:2px solid #ddcea7;border-radius:28px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.palm{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);font-size:340px;line-height:1;user-select:none}
+.pick{position:absolute;width:76px;height:76px;border-radius:50%;border:6px solid #55751b;background:#fffdf7;color:#553814;font-size:28px;font-weight:900;cursor:pointer;z-index:2}
+.pick:focus{outline:4px solid #e0a22a;outline-offset:3px}
+.p1{left:9%;top:28%}.p2{left:9%;top:47%}.p3{left:9%;top:66%}
+.p4{right:9%;top:28%}.p5{right:9%;top:47%}.p6{right:9%;top:66%}
+#questionBox{margin-top:18px;min-height:150px;border:3px solid #2c6b3e;border-radius:22px;background:#fff;padding:22px;display:flex;align-items:center;justify-content:center}
+#question{font-size:clamp(21px,4.5vw,29px);font-weight:900;line-height:1.7;margin:0}
+.hint{color:#6b5a39;font-size:17px}
+.reset{margin-top:14px;border:0;border-radius:14px;background:#17652f;color:white;padding:13px 24px;font-size:18px;font-weight:bold;cursor:pointer}
+.used{background:#e7e2d3;color:#777;border-color:#879274}
+@media(max-width:520px){
+.game{min-height:500px}.palm{font-size:270px}.pick{width:64px;height:64px;font-size:23px;border-width:5px}
+.p1,.p2,.p3{left:4%}.p4,.p5,.p6{right:4%}
+}
+</style>
+</head>
+<body>
+<main>
+<h1>🌴 رمز الجود والكرم</h1>
+<p class="intro">اضغطي على إحدى الحلقات لتظهر لكِ بطاقة السؤال</p>
+
+<div class="game">
+<div class="palm" aria-hidden="true">🌴</div>
+<button type="button" class="pick p1" data-q="عندما يزورنا الضيوف، ماذا نقدم لهم؟">١</button>
+<button type="button" class="pick p2" data-q="هل شاركت أسرتك في إيصال طعام أو شراب لعاملي النظافة أو غيرهم؟">٢</button>
+<button type="button" class="pick p3" data-q="ما شعورك إذا قدمت المساعدة إلى شخص؟">٣</button>
+<button type="button" class="pick p4" data-q="اختر شعار المملكة العربية السعودية من الرموز الآتية.">٤</button>
+<button type="button" class="pick p5" data-q="ما شعورك وأنت تسمع صديقك يشكرك على حسن ضيافتك وجودك؟">٥</button>
+<button type="button" class="pick p6" data-q="ماذا تفعل عندما يدعوك صديقك لمشاركته قطعة من الكيك؟">٦</button>
+</div>
+
+<div id="questionBox">
+<p id="question" class="hint">اختاري رقمًا من النخلة 👆</p>
+</div>
+<button type="button" class="reset" id="reset">↻ إعادة اللعبة</button>
+</main>
+
+<script>
+(function(){
+  var buttons = document.querySelectorAll('.pick');
+  var question = document.getElementById('question');
+  var reset = document.getElementById('reset');
+
+  for (var i=0; i<buttons.length; i++){
+    buttons[i].addEventListener('click', function(){
+      question.textContent = this.getAttribute('data-q');
+      question.className = '';
+      this.classList.add('used');
+    });
+  }
+
+  reset.addEventListener('click', function(){
+    question.textContent = 'اختاري رقمًا من النخلة 👆';
+    question.className = 'hint';
+    for (var j=0; j<buttons.length; j++){
+      buttons[j].classList.remove('used');
+    }
+  });
+})();
+</script>
+</body>
+</html>
